@@ -1,7 +1,7 @@
 {
   "name": "graphql-query-complexity-apollo-plugin",
   "version": "0.0.0-development",
-  "description": "Rollup your code and types for publishing",
+  "description": "Allows you to use graphql-query-complexity with apollo server 3 as a plugin",
   "types": "dist/index.d.ts",
   "main": "./dist/index.js",
   "exports": {
@@ -23,7 +23,10 @@
     "semantic-release": "semantic-release"
   },
   "keywords": [
-    "graphql-query-complexity-apollo-plugin"
+    "graphql-query-complexity",
+    "graphql",
+    "query complexity",
+    "apollo plugin"
   ],
   "license": "MIT",
   "dependencies": {},
