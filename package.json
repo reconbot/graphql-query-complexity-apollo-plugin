@@ -1,5 +1,5 @@
 {
-  "name": "@reconbot/typescript-library-template",
+  "name": "graphql-query-complexity-apollo-plugin",
   "version": "0.0.0-development",
   "description": "Rollup your code and types for publishing",
   "types": "dist/index.d.ts",
@@ -11,8 +11,8 @@
   "engines": {
     "node": "^12.22 || ^14.13 || >=16"
   },
-  "repository": "git@github.com:reconbot/typescript-library-template.git",
-  "homepage": "https://github.com/reconbot/typescript-library-template",
+  "repository": "git@github.com:reconbot/graphql-query-complexity-apollo-plugin.git",
+  "homepage": "https://github.com/reconbot/graphql-query-complexity-apollo-plugin",
   "scripts": {
     "test": "mocha",
     "lint": "tsc && eslint lib/**/*.ts",
@@ -23,7 +23,7 @@
     "semantic-release": "semantic-release"
   },
   "keywords": [
-    "typescript-library-template"
+    "graphql-query-complexity-apollo-plugin"
   ],
   "license": "MIT",
   "dependencies": {},
@@ -34,15 +34,22 @@
     "@types/node": "^16.6.1",
     "@typescript-eslint/eslint-plugin": "^4.29.1",
     "@typescript-eslint/parser": "^4.29.1",
+    "apollo-server-core": "^3.1.2",
     "chai": "^4.3.4",
     "esbuild": "^0.12.20",
     "esbuild-register": "^3.0.0",
     "eslint": "^7.32.0",
+    "graphql": "^15.5.1",
+    "graphql-query-complexity": "^0.9.0",
     "mocha": "^9.0.3",
     "rollup": "^2.56.2",
-    "rollup-plugin-node-resolve": "^5.2.0",
     "semantic-release": "^17.4.4",
     "typescript": "^4.3.5"
+  },
+  "peerDependencies": {
+    "apollo-server-core": "^3.1.2",
+    "graphql": "^15.5.1",
+    "graphql-query-complexity": "^0.9.0"
   },
   "mocha": {
     "bail": true,

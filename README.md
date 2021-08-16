@@ -1,15 +1,48 @@
-# Typescript Library Template
+# Graphql Query Complexity Apollo Plugin
 
-[![Release](https://github.com/reconbot/typescript-library-template/actions/workflows/test.yml/badge.svg)](https://github.com/reconbot/typescript-library-template/actions/workflows/test.yml)
+[![Release](https://github.com/reconbot/graphql-query-complexity-apollo-plugin/actions/workflows/test.yml/badge.svg)](https://github.com/reconbot/graphql-query-complexity-apollo-plugin/actions/workflows/test.yml)
 
-This is an example project for shipping typescript using the rules layed out by [@southpolesteve](https://twitter.com/southpolesteve) in his ["Shipping Typescript to NPM"](https://speakerdeck.com/southpolesteve/shipping-typescript-to-npm?slide=10) talk that he gave at NYC typescript.
+This is a plugin for Apollo Server 3 that throws if a query is too complex.
 
-It gives you a library in UMD and ESM that's rolled up with rollup and includes rolled up types. It makes browser users, node users and me very happy.
+## Example
 
-Also includes eslint, mocha, semantic-release and github actions.  Now updated to include the exports directive in the package.json.
+```ts
+import { ApolloServer } from 'apollo-server-lambda'
+import { schema } from './schema'
+import { context } from './context'
+import { SystemConfigOptions } from '../lib/SystemConfig'
+import { fieldExtensionsEstimator, simpleEstimator } from 'graphql-query-complexity'
+import { createComplexityPlugin } from './createComplexityPlugin'
 
-## Guide
+return new ApolloServer({
+  schema,
+  context,
+  plugins: [
+    createComplexityPlugin({
+      schema,
+      estimators: [
+        fieldExtensionsEstimator(),
+        simpleEstimator({ defaultComplexity: 1 }),
+      ],
+      maximumComplexity: 1000,
+      onComplete: (complexity) => {
+        console.log('Query Complexity:', complexity)
+      },
+    }),
+  ],
+})
+```
 
-- Set the repo secret `NPM_TOKEN` before your first push so that you can publish to npm.
-- Change all references in package.json to your own project name
-- If you want external dependencies, add them to the `external` section in the `rollup.config.js` otherwise they will be bundled in the library.
+## API
+
+```ts
+export const createComplexityPlugin: ({ schema, maximumComplexity, estimators, onComplete, createError }: {
+    schema: GraphQLSchema
+    maximumComplexity: number
+    estimators: Array<ComplexityEstimator>
+    onComplete?: ((complexity: number) => Promise<void> | void)
+    createError?: ((max: number, actual: number) => Promise<GraphQLError> | GraphQLError)
+}) => PluginDefinition
+```
+
+- `createError` should return an error to be thrown if the actual complexity is more than the maximum complexity.
