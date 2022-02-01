@@ -46,7 +46,7 @@
     "graphql-query-complexity": "^0.9.0",
     "mocha": "^9.0.3",
     "rollup": "^2.56.2",
-    "semantic-release": "^18.0.0",
+    "semantic-release": "^19.0.2",
     "typescript": "^4.3.5"
   },
   "peerDependencies": {
