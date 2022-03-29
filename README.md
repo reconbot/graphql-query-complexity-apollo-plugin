@@ -12,7 +12,7 @@ import { schema } from './schema'
 import { context } from './context'
 import { SystemConfigOptions } from '../lib/SystemConfig'
 import { fieldExtensionsEstimator, simpleEstimator } from 'graphql-query-complexity'
-import { createComplexityPlugin } from './createComplexityPlugin'
+import { createComplexityPlugin } from 'graphql-query-complexity-apollo-plugin'
 
 return new ApolloServer({
   schema,
