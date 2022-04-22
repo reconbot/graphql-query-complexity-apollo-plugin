@@ -6,6 +6,7 @@
     "moduleResolution": "node",
     "module": "commonjs",
     "noImplicitAny": false,
+    "esModuleInterop": true,
     "strictNullChecks": true,
     "declaration": true,
     "importHelpers": true,
